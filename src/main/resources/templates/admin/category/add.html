@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--HEAD-->
+<th:block th:insert="admin/layout/head.html"></th:block>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <th:block th:insert="admin/layout/header.html"></th:block>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <th:block th:insert="admin/layout/sidebar.html"></th:block>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Category
+            </h1>
+            <div>
+                <a href="/admin/categories"> List Category</a>
+            </div>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Examples</a></li>
+                <li class="active"> Category</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="col-md-8 __web-inspector-hide-shortcut__">
+                <!-- general form elements -->
+                <th:block th:if="${message}">
+                    <div class="alert alert-warning" role="alert">
+                        <strong><span th:text="${message}" class="alert-link"></span></strong>
+                    </div>
+                </th:block>
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Thêm mới Category</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form th:action="@{/admin/categories-add}" method="post" th:object="${category}">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>Tên Category</label>
+                                <input class="form-control"
+                                       th:classappend="${#fields.hasErrors('name')}?'border-danger'" type="text"
+                                       th:field="*{name}"
+                                       placeholder="Enter name category">
+                                <small class="form-text text-danger" th:errors="*{name}"></small>
+                            </div>
+                            <!--                            <div class="form-group">-->
+                            <!--                                <label>Ảnh </label>-->
+                            <!--                                <input type="file" class="form-control" name="image" th:field="*{image}"-->
+                            <!--                                       placeholder="Add Photo">-->
+                            <!--                            </div>-->
+                            <div class="form-group">
+                                <label>Chọn trạng thái</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" th:field="*{status}" value="1">
+                                        Hiện
+                                    </label>
+                                    <label>
+                                        <input type="radio" th:field="*{status}" value="0">
+                                        Ẩn
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- /.box -->
+
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:insert="admin/layout/footer.html"></th:block>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<th:block th:insert="admin/layout/script.html"></th:block>
+</body>
+</html>

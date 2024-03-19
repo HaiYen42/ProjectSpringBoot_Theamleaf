@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--HEAD-->
+<th:block th:insert="admin/layout/head.html"></th:block>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <th:block th:insert="admin/layout/header.html"></th:block>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <th:block th:insert="admin/layout/sidebar.html"></th:block>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="col-md-8">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Thêm mới Product</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form th:action="@{/admin/product-add}" th:object="${product}" method="post">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>Tên Product</label>
+                                <input class="form-control" th:field="*{productName}"
+                                       placeholder="Banner trang chủ">
+                            </div>
+                            <div class="form-group">
+                                <label>Chọn Category</label>
+                                <select name="" id="input" class="form-control" th:field="*{category.id}">
+                                    <option value="">Chọn Category</option>
+                                    <option th:each="item : ${categories}" th:value="${item.id}"
+                                            th:text="${item.name}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" th:field="*{description}"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Chọn Ảnh</label>
+                                <div class="radio">
+                                    <form method="post" th:action="@{/upload}" enctype="multipart/form-data" th:field="*{imageUrl}">
+                                        <div class="form-group">
+                                            <input type="file" th:name="image" accept="image/*" class="form-control-file">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Upload image</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Stock</label>
+                                <input type="number" class="form-control" th:field="*{stock}"
+                                       placeholder="Write stock">
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="number" class="form-control" th:field="*{price}"
+                                       placeholder="Write price">
+                            </div>
+                            <div class="form-group">
+                                <label>Chọn trạng thái</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" th:field="*{status}" value="1">
+                                        Hiện
+                                    </label>
+                                    <label>
+                                        <input type="radio" th:field="*{status}" value="0">
+                                        Ẩn
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- /.box -->
+
+            </div>
+        </section>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:insert="admin/layout/footer.html"></th:block>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<th:block th:insert="admin/layout/script.html"></th:block>
+</body>
+</html>
